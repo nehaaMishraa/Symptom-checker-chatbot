@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .language-select {
+            margin-bottom: 20px;
+        }
+
+        .language-select button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .language-select button:hover {
+            background-color: #0056b3;
+        }
+
+        .category-select {
+            margin-bottom: 20px;
+        }
+
+        .category-select button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .category-select button:hover {
+            background-color: #218838;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .message.bot {
+            text-align: left;
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        form input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Symptom Checker Chatbot</h1>
+        <div class="language-select">
+            <button onclick="setLanguage('english')">English</button>
+            <button onclick="setLanguage('hindi')">हिंदी</button>
+        </div>
+
+        <div class="category-select">
+            <button onclick="selectCategory('general')">General</button>
+            <button onclick="selectCategory('autism')">Autism</button>
+            <button onclick="selectCategory('mental')">Mental Health</button>
+        </div>
+
+        <div id="chat-box" class="chat-box">
+            <div class="message bot">
+                <p>Welcome to the Symptom Checker Chatbot! Please choose a category and describe your symptom.</p>
+            </div>
+        </div>
+
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your symptom here..." autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        let selectedLanguage = "english";
+
+        function setLanguage(language) {
+            selectedLanguage = language;
+
+            const userInput = document.getElementById("user-input");
+            if (language === "english") {
+                userInput.placeholder = "Type your symptom here...";
+            } else if (language === "hindi") {
+                userInput.placeholder = "अपना लक्षण यहां लिखें...";
+            }
+
+            const chatBox = document.getElementById("chat-box");
+            const message = document.createElement("div");
+            message.className = "message bot";
+            if (language === "english") {
+                message.innerHTML = "<p>Language set to English. Please type your symptom.</p>";
+            } else if (language === "hindi") {
+                message.innerHTML = "<p>भाषा हिंदी में बदल दी गई है। कृपया अपना लक्षण दर्ज करें।</p>";
+            }
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function selectCategory(category) {
+            const chatBox = document.getElementById("chat-box");
+            const message = document.createElement("div");
+            message.className = "message bot";
+
+            if (category === "general") {
+                message.innerHTML = "<p>You have selected 'General'. Please describe your symptoms.</p>";
+            } else if (category === "autism") {
+                message.innerHTML = "<p>You have selected 'Autism'. Please describe the symptoms related to autism.</p>";
+                // Redirect to the Autism category page or perform an action
+                window.location.href = '{{ url_for("autism") }}'; // Replace with actual page URL
+                return;
+            } else if (category === "mental") {
+                message.innerHTML = "<p>You have selected 'Mental Health'. Please describe your symptoms related to mental health.</p>";
+                // Redirect to the Mental category page or perform an action
+                window.location.href = '{{ url_for("mental") }}'; // Replace with actual page URL
+                return;
+            }
+
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        document.getElementById("chat-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const userInput = document.getElementById("user-input");
+            const symptom = userInput.value.trim();
+            if (!symptom) return;
+
+            const chatBox = document.getElementById("chat-box");
+
+            // Display user message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user";
+            userMessage.innerHTML = `<p>${symptom}</p>`;
+            chatBox.appendChild(userMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Clear input field
+            userInput.value = "";
+
+            // Send message to backend
+            fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: symptom, language: selectedLanguage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display bot response
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot";
+                botMessage.innerHTML = `<p>${data.response}</p>`;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>

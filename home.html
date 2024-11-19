@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script> <!-- Add Typed.js Library -->
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: #f3f4f6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2c3e50;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: 0.3s;
+        }
+
+        .navbar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 1rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #1abc9c;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown button {
+            background: none;
+            color: #ecf0f1;
+            border: none;
+            font-size: 1rem;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50px; /* Rounded corners */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown button:hover {
+            background-color: #16a085; /* Darker shade on hover */
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+
+        .dropdown button:focus {
+            outline: none;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #34495e;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #ecf0f1;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1abc9c;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Mobile Navbar Icon */
+        #menu-icon {
+            font-size: 2rem;
+            color: #ecf0f1;
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Mobile Navbar */
+        .navbar.active {
+            transform: translateX(0);
+        }
+
+        .navbar ul {
+            display: block;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: #34495e;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .navbar ul.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-section .typewriter {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            display: inline-block; /* Fixes visibility issue */
+        }
+
+        .hero-section button {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #34495e;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .hero-section button:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Content Section */
+        section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section-text {
+            max-width: 50%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .section-image {
+            max-width: 45%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a href="#">chatbot</a>
+        </div>
+
+        <ul>
+            <li><a href="#home">Home</a></li
+            <li><a href="test.html">Chatbot</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <div class="dropdown">
+                <button>
+                    {% if session.get('username') %}
+                        Welcome, {{ session['username'] }}!
+                    {% else %}
+                        Login / Sign Up
+                    {% endif %}
+                </button>
+                <div class="dropdown-content">
+                    {% if session.get('username') %}
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                        <a href="{{ url_for('signup') }}">Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="menu-icon" class="bx bx-menu"></div> <!-- Menu Icon for Mobile -->
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <h1>Welcome to chatbot</h1>
+        <div class="typewriter">
+            <span class="text"></span>
+        </div>
+        <a href="{{ url_for('test') }}"><button>Chatbot</button></a>
+    </section>
+
+    <!-- Content Section 1: What We Offer -->
+    <section id="what-we-offer">
+        <div class="section-text">
+            <h2 class="section-title">What We Offer</h2>
+            <p class="section-content">
+                We provide a comprehensive tool for early symptoms detection.
+            </p>
+        </div>
+        <img src="static/pic1.jpg" alt="What We Offer" class="section-image">
+    </section>
+
+    <!-- Content Section 2: What is Autism? -->
+    <section id="what-is-chatbot">
+        <div class="section-text">
+            <h2 class="section-title">What is Autism?</h2>
+            <p class="section-content">
+                Chatbot will provide feedback of symptoms.
+            </p>
+        </div>
+        <img src="static/pic2.jpg" alt="What is chatbot" class="section-image">
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <p>&copy; 2024 CHATBOT. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar Scroll Active Link Highlight
+        let menuIcon = document.querySelector('#menu-icon');
+        let navbar = document.querySelector('.navbar');
+        let sections = document.querySelectorAll('section');
+        let navLinks = document.querySelectorAll('header nav a');
+
+        window.onscroll = () => {
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                    });
+                }
+            });
+        };
+
+        // Menu Icon Toggle for Mobile View
+        menuIcon.onclick = () => {
+            menuIcon.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        };
+
+        // Typed.js Effect for Typewriter Text
+        var options = {
+            strings: ["We help give feedback with ease!", "Take the test now to get started."],
+            typeSpeed: 50,
+            backSpeed: 30,
+            backDelay: 1000,
+            showCursor: false,
+            loop: true  // Enable looping
+        };
+        var typed = new Typed(".text", options);
+    </script>
+</body>
+</html>

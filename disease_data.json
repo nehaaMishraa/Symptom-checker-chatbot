@@ -1,0 +1,50 @@
+[
+    {
+        "Symptom": "headache",
+        "SymptomHindi": "सिरदर्द",
+        "Disease": "Migraine",
+        "DiseaseHindi": "माइग्रेन",
+        "Precaution": "Rest in a dark, quiet room, stay hydrated, avoid stress.",
+        "PrecautionHindi": "अंधेरे, शांत कमरे में आराम करें, हाइड्रेटेड रहें, तनाव से बचें।"
+    },
+    {
+        "Symptom": "headache",
+        "SymptomHindi": "सिरदर्द",
+        "Disease": "Tension Headache",
+        "DiseaseHindi": "तनाव सिरदर्द",
+        "Precaution": "Try relaxation exercises, take breaks, stay hydrated.",
+        "PrecautionHindi": "आराम के व्यायाम करें, ब्रेक लें, हाइड्रेटेड रहें।"
+    },
+    {
+        "Symptom": "fever",
+        "SymptomHindi": "बुखार",
+        "Disease": "Common Cold",
+        "DiseaseHindi": "सामान्य जुकाम",
+        "Precaution": "Drink plenty of fluids, rest, take fever-reducing medications.",
+        "PrecautionHindi": "बहुत सारे तरल पदार्थ पीएं, आराम करें, बुखार कम करने वाली दवाएं लें।"
+    },
+    {
+        "Symptom": "fever",
+        "SymptomHindi": "बुखार",
+        "Disease": "Flu",
+        "DiseaseHindi": "फ्लू",
+        "Precaution": "Stay hydrated, take antiviral medications, rest.",
+        "PrecautionHindi": "हाइड्रेटेड रहें, एंटीवायरल दवाएं लें, आराम करें।"
+    },
+    {
+        "Symptom": "cough",
+        "SymptomHindi": "खांसी",
+        "Disease": "Common Cold",
+        "DiseaseHindi": "सामान्य जुकाम",
+        "Precaution": "Drink warm liquids, rest, avoid irritants like smoke.",
+        "PrecautionHindi": "गर्म तरल पदार्थ पीएं, आराम करें, धुएं जैसे उत्तेजक पदार्थों से बचें।"
+    },
+    {
+        "Symptom": "cough",
+        "SymptomHindi": "खांसी",
+        "Disease": "Flu",
+        "DiseaseHindi": "फ्लू",
+        "Precaution": "Drink warm fluids, take cough syrups, avoid spreading germs.",
+        "PrecautionHindi": "गर्म तरल पदार्थ पीएं, खांसी की सिरप लें, कीटाणुओं के फैलाव से बचें।"
+    }
+]
